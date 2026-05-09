@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
-const PROTECTED = ["/post", "/listings"];
+// Protejam doar /post (creare anunt). Editarea (/listings/[id]/edit) isi face propria
+// verificare de auth in pagina (cu redirect catre /login). Vizualizarea (/listings/[id])
+// este publica.
+const PROTECTED = ["/post"];
 
 function getSecret() {
   return new TextEncoder().encode(process.env.JWT_SECRET ?? "");
@@ -25,5 +28,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/post/:path*", "/listings/:path*"],
+  matcher: ["/post/:path*"],
 };
