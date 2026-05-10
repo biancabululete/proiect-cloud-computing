@@ -204,18 +204,7 @@ Response `200 OK` sau `403 Forbidden` daca nu este al tau:
 [Browser] ──GET /──▶ [Next.js Server Component] ──SELECT──▶ [Neon Postgres] ──▶ HTML
 ```
 
-## 5. Capturi ecran aplicatie
-
-> _Se vor adauga dupa publicare. Recomandat:_
-> - `docs/screenshots/01-home.png` — pagina principala cu lista de anunturi
-> - `docs/screenshots/02-register.png` — formular cont nou
-> - `docs/screenshots/03-login.png` — formular autentificare
-> - `docs/screenshots/04-post.png` — formular adaugare anunt + upload imagine
-> - `docs/screenshots/05-edit.png` — pagina editare anunt
-> - `docs/screenshots/06-neon.png` — dashboard Neon (tabelele User si Listing)
-> - `docs/screenshots/07-blob.png` — dashboard Vercel Blob cu imaginile incarcate
-
-## 6. Referinte
+## 5. Referinte
 
 - [Next.js App Router](https://nextjs.org/docs/app)
 - [Prisma ORM](https://www.prisma.io/docs)
