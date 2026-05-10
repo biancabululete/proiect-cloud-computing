@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Navbar session={session} />
         <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-6">{children}</main>
         <footer className="border-t bg-white py-4 text-center text-xs text-gray-500">
-          Proiect Cloud Computing — Next.js + Neon Postgres + Vercel Blob
+          Proiect Cloud Computing - Bululete Bianca-Maria
         </footer>
       </body>
     </html>
