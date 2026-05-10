@@ -4,7 +4,7 @@
 
 - **Link video prezentare**: _[de adaugat dupa inregistrare YouTube — public nelistat]_
 - **Link aplicatie publicata**: _[de adaugat dupa deploy pe Vercel, ex: https://anunturi-cloud.vercel.app]_
-- **Repository git**: _[link catre repo-ul GitHub]_
+
 
 ---
 

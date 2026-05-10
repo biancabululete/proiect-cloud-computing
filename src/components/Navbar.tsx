@@ -1,16 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import type { SessionPayload } from "@/lib/auth";
 
 export default function Navbar({ session }: { session: SessionPayload | null }) {
-  const router = useRouter();
-
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
-    router.refresh();
-    router.push("/");
+    // Hard reload pentru a re-evalua cookie-ul de sesiune in toate server components
+    window.location.href = "/";
   }
 
   return (

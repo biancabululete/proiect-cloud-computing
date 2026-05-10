@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { hashPassword, setSessionCookie } from "@/lib/auth";
+import {
+  normalizePhone,
+  validateEmail,
+  validateName,
+  validatePassword,
+  validatePhone,
+} from "@/lib/validators";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -8,24 +15,22 @@ export async function POST(req: NextRequest) {
 
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim().toLowerCase();
-  const phone = String(body.phone ?? "").trim();
+  const phoneRaw = String(body.phone ?? "");
   const password = String(body.password ?? "");
 
-  if (!name || !email || !phone || !password) {
-    return NextResponse.json(
-      { error: "Toate campurile sunt obligatorii" },
-      { status: 400 }
-    );
-  }
-  if (password.length < 8) {
-    return NextResponse.json(
-      { error: "Parola trebuie sa aiba minim 8 caractere" },
-      { status: 400 }
-    );
-  }
-  if (!/^\S+@\S+\.\S+$/.test(email)) {
-    return NextResponse.json({ error: "Email invalid" }, { status: 400 });
-  }
+  const nameErr = validateName(name);
+  if (nameErr) return NextResponse.json({ error: nameErr }, { status: 400 });
+
+  const emailErr = validateEmail(email);
+  if (emailErr) return NextResponse.json({ error: emailErr }, { status: 400 });
+
+  const phoneErr = validatePhone(phoneRaw);
+  if (phoneErr) return NextResponse.json({ error: phoneErr }, { status: 400 });
+
+  const passwordErr = validatePassword(password);
+  if (passwordErr) return NextResponse.json({ error: passwordErr }, { status: 400 });
+
+  const phoneNormalized = normalizePhone(phoneRaw)!; // validatorul a confirmat ca este valid
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
@@ -37,7 +42,7 @@ export async function POST(req: NextRequest) {
 
   const passwordHash = await hashPassword(password);
   const user = await prisma.user.create({
-    data: { name, email, phone, passwordHash },
+    data: { name, email, phone: phoneNormalized, passwordHash },
     select: { id: true, name: true, email: true, phone: true },
   });
 
