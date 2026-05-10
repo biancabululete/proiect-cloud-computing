@@ -1,10 +1,6 @@
 # Anunturi Cloud — platforma de anunturi
 
-**Bululete Bianca Maria, grupa 1145**
-
-- **Link video prezentare**: _[de adaugat dupa inregistrare YouTube — public nelistat]_
-- **Link aplicatie publicata**: _[de adaugat dupa deploy pe Vercel, ex: https://anunturi-cloud.vercel.app]_
-
+- **Link aplicatie publicata**: _https://proiect-cloud-computing-three.vercel.app/_
 
 ---
 
